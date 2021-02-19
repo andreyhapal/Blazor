@@ -1,0 +1,19 @@
+﻿<div>
+
+    <p>@Summary<br />
+    @TempC
+    @TempF
+    @Date</p>
+    <button @onclick="SubmitForm" class="btn btn-primary">Submit</button>
+    <button @onclick="Cancel" class="btn btn-secondary">Cancel</button>
+</div>
+
+@code { [CascadingParameter] BlazoredModalInstance BlazoredModal { get; set; }
+
+    [Parameter] public string Date { get; set; }
+    [Parameter] public int TempC { get; set; }
+    [Parameter] public int TempF { get; set; }
+    [Parameter] public string Summary { get; set; }
+
+    async Task SubmitForm() => await BlazoredModal.CloseAsync();
+    async Task Cancel() => await BlazoredModal.CancelAsync(); }
