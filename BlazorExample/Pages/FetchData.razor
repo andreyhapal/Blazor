@@ -67,6 +67,13 @@ else
         </div>
     </div>
     //-----------
+
+    <RadzenChart>
+        @*<RadzenLegend Title="Temperature Changing"/>*@
+        <RadzenLineSeries  Data="@forecasts" CategoryProperty="Date" Title="Temperature" LineType="LineType.Dashed" ValueProperty="TemperatureC">
+            <RadzenMarkers MarkerType="MarkerType.Diamond" />
+        </RadzenLineSeries>
+    </RadzenChart>
 }
 
 @code
@@ -85,7 +92,7 @@ else
 
     [CascadingParameter] public IModalService Modal { get; set; }
 
-    int index=-1;
+    int index = -1;
     string date;
     string tempC;
     string tempF;
@@ -103,7 +110,8 @@ else
         try
         {
             forecasts.RemoveAt(index);
-        }catch(Exception e)
+        }
+        catch (Exception e)
         {
             Console.WriteLine(e.Message);
         }
