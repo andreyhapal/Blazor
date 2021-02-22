@@ -43,6 +43,43 @@
                         <p>@employee.Phone</p>
                     </div>
                 </div>
+                <RadzenTabs style="height: 500px">
+                    <Tabs>
+                        <RadzenTabsItem Text="Orders" >
+                        </RadzenTabsItem>
+
+                        <RadzenTabsItem Text="Customers">
+                            <RadzenGrid AllowFiltering="true" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive" FilterMode="FilterMode.Advanced" AllowPaging="true" PageSize="4"
+                                        AllowSorting="true" Data="@employees" TItem="Employee" ColumnWidth="200px" AllowColumnResize="true">
+                                <Columns>
+                                    <RadzenGridColumn TItem="Employee" Property="FirstName" Title="First Name" />
+                                    <RadzenGridColumn TItem="Employee" Property="LastName" Title="LastName"/>
+                                </Columns>
+                            </RadzenGrid>
+                        </RadzenTabsItem>
+
+                        <RadzenTabsItem Text="CallBack">
+                            <RadzenCard class="m-1">
+                                <h2>ABC ABC</h2>
+                                <RadzenRating Value="4"></RadzenRating>
+                                <p>abccccccccccccccccccabcccccccccccccccccabccccccccccccccccccabccccccccccccccccccc</p>
+                                <p>02.02.2020</p>
+                            </RadzenCard>
+                            <RadzenCard class="m-1">
+                                <h2>ABC ABC</h2>
+                                <RadzenRating Value="4"></RadzenRating>
+                                <p>abccccccccccccccccccabccccccccccccccccccabccccccccccccccccccabcccccccccccccccccc</p>
+                                <p>02.02.2020</p>
+                            </RadzenCard>
+                            <RadzenCard class="m-1">
+                                <h2>ABC ABC</h2>
+                                <RadzenRating Value="4"></RadzenRating>
+                                <p>abccccccccccccccccccabccccccccccccccccccabccccccccccccccccccabcccccccccccccccccc</p>
+                                <p>02.02.2020</p>
+                            </RadzenCard>
+                        </RadzenTabsItem>
+                    </Tabs>
+                </RadzenTabs>
             </div>
         </div>
     </RadzenFieldset>
@@ -54,5 +91,30 @@
         LastName = "BBB",
         Speciality = "Builder",
         Phone = "(123)-12-123-12-12"
+    };
+
+    List<Employee> employees = new List<Employee>()
+{
+        new Employee()
+        {
+            FirstName = "AAA",
+        LastName = "DDD",
+        Speciality = "Builder",
+        Phone = "(123)-12-123-12-12"
+        },
+        new Employee()
+        {
+            FirstName = "AAA",
+        LastName = "CCC",
+        Speciality = "Builder",
+        Phone = "(123)-12-123-12-12"
+        },
+        new Employee()
+        {
+            FirstName = "BB",
+        LastName = "BVDS",
+        Speciality = "Builder",
+        Phone = "(123)-12-123-12-12"
+        }
     };
 }

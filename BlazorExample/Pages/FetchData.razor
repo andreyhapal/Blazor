@@ -53,37 +53,30 @@ else
                                 <label>Date</label>
                             </div>
                             <div class="col-md-4">
-
                                 <input type="text" @bind="date" />
                             </div>
                         </div>
                         <div class="row mb-1">
                             <div class="col-md-4">
-
                                 <label>TempC</label>
                             </div>
                             <div class="col-md-4">
-
                                 <input type="text" @bind="tempC" />
                             </div>
                         </div>
                         <div class="row mb-1">
                             <div class="col-md-4">
-
                                 <label>TempF</label>
                             </div>
                             <div class="col-md-4">
-
                                 <input type="text" @bind="tempF" />
                             </div>
                         </div>
                         <div class="row mb-1">
                             <div class="col-md-4">
-
                                 <label>Summary</label>
                             </div>
                             <div class="col-md-4">
-
                                 <input type="text" @bind="summ" />
                             </div>
                         </div>
@@ -100,7 +93,6 @@ else
     //-----------
 
     <RadzenChart>
-        @*<RadzenLegend Title="Temperature Changing"/>*@
         <RadzenLineSeries Data="@forecasts" CategoryProperty="Date" Title="Temperature" LineType="LineType.Dashed" ValueProperty="TemperatureC">
             <RadzenMarkers MarkerType="MarkerType.Diamond" />
         </RadzenLineSeries>
