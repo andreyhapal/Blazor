@@ -1,0 +1,149 @@
+﻿@page "/reg"
+<h1>RegistrationForm</h1>
+<hr class="mb-5" />
+
+<RadzenCard Style="width:50%; margin: 20px auto 20px auto; height:650px;">
+    <RadzenFieldset Text="Registration">
+        <RadzenTemplateForm TItem="Model" Data=@model>
+
+            <div class="row" style="margin-bottom:15px">
+                <div class="col-md-4">
+                    <p class="text-right pt-1">First Name:</p>
+                </div>
+                <div class="col-md-6">
+                    <RadzenTextBox Name="FirstName" Style="padding-right:18px"></RadzenTextBox>
+                    <RadzenRequiredValidator Component="FirstName" Text="First name is required" Popup=@popup Style="position: absolute" />
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+                <div class="col-md-4">
+                    <p class="text-right pt-1">Last Name:</p>
+                </div>
+                <div class="col-md-6">
+                    <RadzenTextBox Style="padding-right:18px" Name="LastName"></RadzenTextBox>
+                    <RadzenRequiredValidator Component="LastName" Text="First name is required" Popup=@popup Style="position: absolute" />
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+                <div class="col-md-4">
+                    <p class="text-right pt-1">Phone:</p>
+                </div>
+                <div class="col-md-6">
+                    <RadzenMask Style="padding-right:18px" Mask="(***) ***-**-**" Pattern="[^0-9]" Placeholder="(000) 000-00-00" Name="Phone" @bind-Value=@model.Phone />
+                    <RadzenRequiredValidator Component="Phone" Text="Phone is required" Popup=@popup Style="position: absolute" />
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+                <div class="col-md-4">
+                    <p class="text-right pt-1">Birth date:</p>
+                </div>
+                <div class="col-md-6">
+                    <RadzenDatePicker @bind-Value=@model.BirthDate Name="Date" DateFormat="d"></RadzenDatePicker>
+                    <RadzenRequiredValidator Component="Date" Text="Date is required" Popup=@popup Style="position: absolute" />
+
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+                <div class="col-md-4">
+                    <p class="text-right pt-1">Sex:</p>
+                </div>
+                <div class="col-md-6">
+                    <RadzenRadioButtonList @bind-Value=@radio TValue="int" Name="Sex">
+                        <Items>
+                            <RadzenRadioButtonListItem Text="Male" Value="0" />
+                            <RadzenRadioButtonListItem Text="Female" Value="1" />
+                        </Items>
+                    </RadzenRadioButtonList>
+                    <RadzenRequiredValidator Component="Sex" Text="Sex is required" Popup=@popup Style="position: absolute" />
+
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+                <div class="col-md-4">
+                    <p class="text-right pt-1">Country:</p>
+                </div>
+                <div class="col-md-6">
+                    <RadzenDropDown AllowClear="true" TValue="string"
+                                    Data=@countries Name="Country"
+                                    TextProperty="Country" ValueProperty="country" />
+                    <RadzenRequiredValidator Component="Country" Text="Country is required" Popup=@popup Style="position: absolute" />
+
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+                <div class="col-md-4">
+                    <p class="text-right pt-1">Email:</p>
+                </div>
+                <div class="col-md-6">
+                    <RadzenTextBox style="display: block; margin-right:18px;" Name="Email" @bind-Value=@model.Email />
+                    <RadzenRequiredValidator Component="Email" Text="Email is required" Popup=@popup Style="position: absolute" />
+                    <RadzenEmailValidator Component="Email" Text="Provide a valid email address" Popup=@popup Style="position: absolute" />
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+                <div class="col-md-4">
+                    <p class="text-right pt-1">Login:</p>
+                </div>
+                <div class="col-md-6">
+                    <RadzenTextBox style="display: block; margin-right:18px;" Name="Login" @bind-Value=@model.Login />
+                    <RadzenRequiredValidator Component="Login" Text="Login is required" Popup=@popup Style="position: absolute" />
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom:15px">
+                <div class="col-md-4">
+                    <p class="text-right pt-1">Password:</p>
+                </div>
+                <div class="col-md-6">
+                    <RadzenPassword Name="Password"></RadzenPassword>
+                    <RadzenRequiredValidator Component="Password" Text="Password is required" Popup=@popup Style="position: absolute" />
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-6">
+                    <label>
+                        <RadzenCheckBox @bind-Value=@popup></RadzenCheckBox>
+                        Display validators as popup
+                    </label>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-6">
+                    <RadzenButton>Submit</RadzenButton>
+                </div>
+            </div>
+        </RadzenTemplateForm>
+    </RadzenFieldset>
+</RadzenCard>
+
+@code {
+    bool popup;
+    int radio;
+    class Model
+    {
+        public string Email { get; set; }
+        public string Sex { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string Phone { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+    }
+
+    Model model = new Model();
+
+    List<string> countries = new List<string>()
+{
+        "Belarus",
+        "Russia",
+        "Ukraine",
+        "Belgium",
+        "France",
+        "Spain",
+        "Italy"
+    };
+}
