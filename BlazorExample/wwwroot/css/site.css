@@ -180,4 +180,18 @@ app {
         /* Never collapse the sidebar for wide screens */
         display: block;
     }
+
+    .margin-panel{
+        margin-top:250px;
+    }
+    .expand-panel {
+        width: 700px;
+        margin-bottom: 20px;
+        height: 600px;
+    }
+    .default-panel {
+        width: 700px;
+        margin-bottom: 20px;
+        height: 65px;
+    }
 }

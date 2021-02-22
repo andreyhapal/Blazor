@@ -1,0 +1,69 @@
+﻿@page "/panels"
+<h1>CollapsedPanels</h1>
+<hr class="mb-5" />
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-xl-3" style="width:50%;margin:0px 200px 0px 200px;">
+            <RadzenPanel AllowCollapse="true" Collapsed="true"
+                         Expand=@(() => Change(1,true)) Collapse=@(() => Change(1,false)) class="@(expanded[1]?"expand-panel":"default-panel")">
+                <HeaderTemplate>
+                    <span style="float:left;">
+                        <RadzenIcon Icon="account_box" /><b style="font-size:30px">PANEL1</b>
+                    </span>
+                </HeaderTemplate>
+                <ChildContent>
+                    <h1 class="text-lg-center">CONTENT1</h1>
+                    <h1 class="text-lg-center">CONTENT1</h1>
+                    <h1 class="text-lg-center">CONTENT1</h1>
+                    <h1 class="text-lg-center">CONTENT1</h1>
+                </ChildContent>
+            </RadzenPanel>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-3" style="width:50%;margin:0px 200px 0px 200px;">
+            <RadzenPanel AllowCollapse="true" Collapsed="true"
+                         Expand=@(() => Change(2,true)) Collapse=@(() => Change(2,false)) class="@(expanded[2]?"expand-panel":"default-panel")">
+                <HeaderTemplate>
+                    <span style="float:left;">
+                        <RadzenIcon Icon="account_box" /><b style="font-size:30px">PANEL2</b>
+                    </span>
+                </HeaderTemplate>
+                <ChildContent>
+                    <h1 class="text-lg-center">CONTENT1</h1>
+                    <h1 class="text-lg-center">CONTENT1</h1>
+                    <h1 class="text-lg-center">CONTENT1</h1>
+                    <h1 class="text-lg-center">CONTENT1</h1>
+                </ChildContent>
+            </RadzenPanel>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-3" style="width:50%;margin:0px 200px 0px 200px;">
+            <RadzenPanel AllowCollapse="true" Collapsed="true"
+                         Expand=@(() => Change(3,true)) Collapse=@(() => Change(3,false)) class="@(expanded[3]?"expand-panel":"default-panel")">
+                <HeaderTemplate>
+                    <span style="float:left;">
+                        <RadzenIcon Icon="account_box" /><b style="font-size:30px">PANEL3</b>
+                    </span>
+                </HeaderTemplate>
+                <ChildContent>
+                    <h1 class="text-lg-center">CONTENT1</h1>
+                    <h1 class="text-lg-center">CONTENT1</h1>
+                    <h1 class="text-lg-center">CONTENT1</h1>
+                    <h1 class="text-lg-center">CONTENT1</h1>
+                </ChildContent>
+            </RadzenPanel>
+        </div>
+    </div>
+
+</div>
+@code {
+    private bool[] expanded = { false, false, false,false };
+    private void Change(int panelNumber, bool expand)
+    {
+        expanded[panelNumber] = expand;
+    }
+}
