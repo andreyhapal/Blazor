@@ -1,0 +1,58 @@
+﻿@page "/profile"
+@using BlazorExample.Data
+<h1>ProfileForm</h1>
+<hr class="mb-5" />
+
+<div class="container">
+    <RadzenFieldset Text="Profile">
+        <div class="row">
+            <div class="col-xl-6">
+                <RadzenImage Path="https://www.radzen.com/assets/hero-40b90af93c7bda2d44608c74e2b8eeb6785e273e02340ec44583d097b5dfb896.png" Style="width:600px">
+                </RadzenImage>
+            </div>
+            <div class="col-xl-6">
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="text-right">First Name:</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>@employee.FirstName</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="text-right">Last Name:</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>@employee.LastName</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="text-right">Speciality:</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>@employee.Speciality</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="text-right">Phone:</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>@employee.Phone</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </RadzenFieldset>
+</div>
+@code {
+    Employee employee = new Employee()
+    {
+        FirstName = "AAA",
+        LastName = "BBB",
+        Speciality = "Builder",
+        Phone = "(123)-12-123-12-12"
+    };
+}

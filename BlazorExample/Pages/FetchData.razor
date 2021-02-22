@@ -41,27 +41,58 @@ else
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Modal title</h5>
+                    <h5 class="modal-title">@(modalType?"Edit forecast":"Add new forecast")</h5>
                     <button class="close" @onclick="ToggleModal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <label>Date</label>
-                        <input type="text" @bind="date" /><br />
-                        <label>TempC</label>
-                        <input type="text" @bind="tempC" /><br />
-                        <label>TempF</label>
-                        <input type="text" @bind="tempF" /><br />
-                        <label>Summary</label>
-                        <input type="text" @bind="summ" /><br />
+                        <div class="row mb-1">
+                            <div class="col-md-4">
+                                <label>Date</label>
+                            </div>
+                            <div class="col-md-4">
+
+                                <input type="text" @bind="date" />
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-md-4">
+
+                                <label>TempC</label>
+                            </div>
+                            <div class="col-md-4">
+
+                                <input type="text" @bind="tempC" />
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-md-4">
+
+                                <label>TempF</label>
+                            </div>
+                            <div class="col-md-4">
+
+                                <input type="text" @bind="tempF" />
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col-md-4">
+
+                                <label>Summary</label>
+                            </div>
+                            <div class="col-md-4">
+
+                                <input type="text" @bind="summ" />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" @onclick="ToggleModal">Close</button>
+                    <button class="btn btn-secondary" @onclick="Close">Close</button>
                     <button class="btn btn-primary" @onclick="SaveChanges">Save changes</button>
-                    <button class="btn btn-danger" @onclick="Delete">Delete</button>
+                    <RadzenButton Visible="modalType" class="btn btn-danger" @onclick="Delete" >Delete</RadzenButton>
                 </div>
             </div>
         </div>
@@ -70,7 +101,7 @@ else
 
     <RadzenChart>
         @*<RadzenLegend Title="Temperature Changing"/>*@
-        <RadzenLineSeries  Data="@forecasts" CategoryProperty="Date" Title="Temperature" LineType="LineType.Dashed" ValueProperty="TemperatureC">
+        <RadzenLineSeries Data="@forecasts" CategoryProperty="Date" Title="Temperature" LineType="LineType.Dashed" ValueProperty="TemperatureC">
             <RadzenMarkers MarkerType="MarkerType.Diamond" />
         </RadzenLineSeries>
     </RadzenChart>
@@ -78,6 +109,9 @@ else
 
 @code
 {
+    //modalType: 0-add 1-edit
+    bool modalType = false;
+
     bool open = false;
     string modalClass => open ? "modal fade show" : "modal fade";
     string displayMode => open ? "block" : "none";
@@ -122,10 +156,13 @@ else
             TemperatureC = int.Parse(tempC)
         });
         ToggleModal();
+        modalType = false;
+
     }
 
     async Task Edit(WeatherForecast forecast, int row)
     {
+        modalType = true;
         date = forecast.Date.ToShortDateString();
         tempC = forecast.TemperatureC.ToString();
         tempF = forecast.TemperatureF.ToString();
@@ -136,6 +173,13 @@ else
 
     private void ToggleModal()
     {
+        open = !open;
+        StateHasChanged();
+    }
+
+    private void Close()
+    {
+        modalType = false;
         open = !open;
         StateHasChanged();
     }
